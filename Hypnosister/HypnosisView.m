@@ -9,6 +9,7 @@
 #import "HypnosisView.h"
 
 @implementation HypnosisView
+@synthesize circleColor;
 
 - (void)drawRect:(CGRect)rect
 {
@@ -30,7 +31,7 @@
     
     // The color of the line should be gray
     //CGContextSetRGBStrokeColor(ctx, 0.6, 0.6, 0.6, 1.0);
-    [[UIColor lightGrayColor] setStroke];
+    [[self circleColor] setStroke];
     
     // Draw concentric circles from the outside in
     for (float currentRadius = maxRadius; currentRadius > 0; currentRadius -= 20) {
@@ -40,6 +41,16 @@
         // Perform drawing instruction; removes path
         CGContextStrokePath(ctx);
     }
+    
+    // The shadow will move 4 points to the right and 3 points down from the text
+    CGSize offset = CGSizeMake(4, 3);
+    
+    // The shadow will be dark gray in color
+    CGColorRef color = [[UIColor darkGrayColor] CGColor];
+    
+    // Set the shadow of the context with these parameters,
+    // all subsequent drawing will be shadowed
+    CGContextSetShadowWithColor(ctx, offset, 2.0, color);
     
     // Create a string
     NSString *text = @"You are getting sleepy.";
@@ -72,6 +83,7 @@
     if (self) {
         // All HypnosisViews start with a clear background color
         [self setBackgroundColor:[UIColor clearColor]];
+        [self setCircleColor:[UIColor lightGrayColor]];
     }
     return self;
 }
