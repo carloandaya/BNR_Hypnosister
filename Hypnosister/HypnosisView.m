@@ -29,7 +29,8 @@
     CGContextSetLineWidth(ctx, 10);
     
     // The color of the line should be gray
-    CGContextSetRGBStrokeColor(ctx, 0.6, 0.6, 0.6, 1.0);
+    //CGContextSetRGBStrokeColor(ctx, 0.6, 0.6, 0.6, 1.0);
+    [[UIColor lightGrayColor] setStroke];
     
     // Draw concentric circles from the outside in
     for (float currentRadius = maxRadius; currentRadius > 0; currentRadius -= 20) {
@@ -39,6 +40,28 @@
         // Perform drawing instruction; removes path
         CGContextStrokePath(ctx);
     }
+    
+    // Create a string
+    NSString *text = @"You are getting sleepy.";
+    
+    // Get a font to draw it in
+    UIFont *font = [UIFont boldSystemFontOfSize:28];
+    
+    CGRect textRect;
+    
+    // How big is this string when drawn in this font?
+    textRect.size = [text sizeWithFont:font];
+    
+    // Let's put that string in the center of the view
+    textRect.origin.x = center.x - textRect.size.width / 2.0;
+    textRect.origin.y = center.y - textRect.size.height / 2.0;
+    
+    // Set the fill color of the current context to black
+    [[UIColor blackColor] setFill];
+    
+    // Draw the string
+    [text drawInRect:textRect withFont:font];
+    
 }
 
 // We override initWithFrame to set some default properties for all instances of this
