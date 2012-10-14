@@ -16,9 +16,27 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    HypnosisView *view = [[HypnosisView alloc] initWithFrame:[[self window] bounds]];
+    CGRect screenRect = [[self window] bounds];
     
-    [[self window] addSubview:view];
+    // Creat the UIScrollView to have the size of the window, matching its size
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:screenRect];
+    [[self window] addSubview:scrollView];
+    
+    //HypnosisView *view = [[HypnosisView alloc] initWithFrame:[[self window] bounds]];
+    
+    // Create the HypnosisView with a frame that is twice the size of the screen
+    CGRect bigRect = screenRect;
+    bigRect.size.width *= 2.0;
+    bigRect.size.height *= 2.0;
+    HypnosisView *view = [[HypnosisView alloc] initWithFrame:bigRect];
+    
+    //[[self window] addSubview:view];
+    
+    // Add the HypnosisView as a subview of the scrollView instead of the window
+    [scrollView addSubview:view];
+    
+    // Tell the scrollView how big its virtual world is
+    [scrollView setContentSize:bigRect.size];
     
     BOOL success = [view becomeFirstResponder];
     if (success) {
