@@ -83,9 +83,9 @@
 			children = (
 				233323031623E901004AB7F3 /* HypnosisterAppDelegate.h */,
 				233323041623E901004AB7F3 /* HypnosisterAppDelegate.m */,
-				233322FB1623E901004AB7F3 /* Supporting Files */,
 				232FA4711623EC3200DCA839 /* HypnosisView.h */,
 				232FA4721623EC3200DCA839 /* HypnosisView.m */,
+				233322FB1623E901004AB7F3 /* Supporting Files */,
 			);
 			path = Hypnosister;
 			sourceTree = "<group>";
