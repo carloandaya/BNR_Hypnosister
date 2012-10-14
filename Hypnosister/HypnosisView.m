@@ -88,4 +88,33 @@
     return self;
 }
 
+// A responder object must explicitly state that it is willing to become the first
+// responder.
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+// Send to the first responder when the user starts shaking the device
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake) {
+        NSLog(@"Device started shaking!");
+        
+        // Toggle between the redColor and the lightGrayColor
+        if (circleColor == [UIColor redColor]) {
+            [self setCircleColor:[UIColor lightGrayColor]];
+        } else {
+            [self setCircleColor:[UIColor redColor]];
+        }
+    }
+}
+
+// Redraw the circles after the color is changed
+- (void)setCircleColor:(UIColor *)clr
+{
+    circleColor = clr;
+    [self setNeedsDisplay];
+}
+
 @end
